@@ -2,11 +2,25 @@
 
 ## The task of the topic "Hooks"
 
-There is the functional component `App` which renders one element `div` with text `React Marathon` in it
+There is the functional component `App` which renders one `div` with the text `React Marathon, appData:` and an `input`.
 
-Using `hooks` write code to provide next functionality: on page load, the component `App` fetches from `localStorage` a value of key `appData` and puts it in the `input`
+Using `useState` and `useEffect`, when the page loads, read the `localStorage` key `appData` and put that value into the `input`.
+
+Editing `appData` in DevTools does not change the field until the page is loaded again.
 
 ### Example
 <kbd>
   <img src="./example.gif" >
 </kbd>
+
+### Run locally
+
+Node.js 22 or newer.
+
+```bash
+npm install
+npm run dev
+npm test
+```
+
+`npm test` fails on the starter and passes after the task is done.

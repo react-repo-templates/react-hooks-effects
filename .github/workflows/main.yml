@@ -1,14 +1,23 @@
 name: Tests Workflow
 
-on: [push]
+on:
+  push
 
 jobs:
   build:
     name: Autograding
+    # Creating a repo from this template pushes the default branch for the
+    # first time (before SHA is all zeros). That push is the starter, so skip
+    # it. A later push, after the student adds a solution, runs the tests.
+    if: github.event.before != '0000000000000000000000000000000000000000' || github.ref_name != github.event.repository.default_branch
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Prepare to tests
-        run: npm i
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
       - name: Tests
         run: npm test
